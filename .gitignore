@@ -1,0 +1,39 @@
+*.class
+*.log
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+# IntelliJ IDEa specific
+.classpath
+.project
+.settings
+checkpoint
+.idea
+*.iml
+.history
+.DS_Store
+
+# Gradle specific
+target/
+**/target/
+
+build/
+**/build/
+
+**/out/
+
+.gradle
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties

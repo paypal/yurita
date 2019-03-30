@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://oss.sonatype.org/content/groups/public" }
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+    }
+}
+
+plugins {
+    id 'scala'
+    id "com.github.hierynomus.license" version "0.15.0"
+}
+
+def sparkVersion = project.ext.get('spark.version')
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compileOnly "org.apache.spark:spark-core_2.11:$sparkVersion"
+    compileOnly "org.apache.spark:spark-sql_2.11:$sparkVersion"
+    compile group: 'com.typesafe.scala-logging', name: 'scala-logging_2.11', version: '3.9.0'
+    compile files('libs/clust4j-1.2.4-SNAPSHOT.jar')
+
+    // test
+    testCompile "org.apache.spark:spark-sql_2.11:$sparkVersion"
+    testCompile 'junit:junit:4+'
+    testCompile 'org.scalatest:scalatest_2.11:3.0.4'
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+license {
+    header rootProject.file('codequality/HEADER')
+    strictCheck true
+
+    // Variable substitution
+    ext.year = Calendar.getInstance().get(Calendar.YEAR)
+    ext.name = 'PayPal Inc'
+}
