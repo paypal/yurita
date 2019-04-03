@@ -5,10 +5,13 @@ buildscript {
         jcenter()
         mavenCentral()
     }
-
+    
     dependencies {
+        classpath "org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:0.9.0"
+        classpath 'net.researchgate:gradle-release:2.7.0'
         classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
     }
+    
 }
 
 plugins {
