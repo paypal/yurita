@@ -17,6 +17,7 @@ buildscript {
 plugins {
     id 'scala'
     id "com.github.hierynomus.license" version "0.15.0"
+    id 'maven-publish'
 }
 
 def sparkVersion = project.ext.get('spark.version')
@@ -59,4 +60,12 @@ license {
     // Variable substitution
     ext.year = Calendar.getInstance().get(Calendar.YEAR)
     ext.name = 'PayPal Inc'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }
