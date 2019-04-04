@@ -16,9 +16,19 @@ Yurita is an open source project for developing large scale anomaly detection mo
 
 ## Getting Started
 
+## What is Yurita 
+
 ## Building Yurita 
 
+To build Yurita and run a clean build run: 
+
+      ./gradlew clean build
+
 ## Testing Yurita
+
+To run all tests:
+
+    ./gradlew clean test
 
 ## Running Checkstyle
 
