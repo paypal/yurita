@@ -22,7 +22,7 @@ Yurita is an open source project for developing large scale anomaly detection mo
 
 To build Yurita and run a clean build run: 
 
-      ./gradlew clean build
+    ./gradlew clean build
 
 ## Testing Yurita
 
