@@ -20,24 +20,27 @@ Yurita is an open source project for developing large scale anomaly detection mo
 Yurita's key features include:
 
 
-Check out [Hello Yurita](https://github.paypal.com/pages/EservDataProcessing/Yurita) to try Yurita. 
+
+
+
+
 ## Building Yurita 
 
 To build Yurita and run a clean build run: 
 
     ./gradlew clean build
+    
+To build Yurita from a source release, it is first necessary to download the gradle wrapper script above. This bootstrapping process requires Gradle to be installed on the source machine.  Gradle is available through most package managers or directly from [its website](http://www.gradle.org/).  To bootstrap the wrapper, run:
+
+    gradle -b bootstrap.gradle
+
+After the bootstrap script has completed, the regular gradlew instructions below are available.
 
 ## Testing Yurita
 
 To run all tests:
 
     ./gradlew clean test
-
-## Running Checkstyle
-
-## Job Management 
-
-## Developers
 
 ## Contributing to Yurita
 
