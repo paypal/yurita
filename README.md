@@ -11,13 +11,16 @@
 [![Documentation Status](https://readthedocs.org/projects/squbs/badge/?version=latest)](https://squbs.readthedocs.io)
 
 
-Yurita is an open source project for developing large scale anomaly detection models
-[Site](https://github.paypal.com/pages/EservDataProcessing/Yurita/)
-
 ## Getting Started
 
 ## What is Yurita 
 
+Yurita is an open source project for developing large scale anomaly detection models
+
+Yurita's key features include:
+
+
+Check out [Hello Yurita](https://github.paypal.com/pages/EservDataProcessing/Yurita) to try Yurita. 
 ## Building Yurita 
 
 To build Yurita and run a clean build run: 
