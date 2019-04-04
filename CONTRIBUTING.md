@@ -2,17 +2,15 @@
 
 We love your contributions. Please use the steps below to determine the path of contribution.
 
-## Discussions/Proposals
-We all should discuss new ideas before they turn into code. The [squbs gitter chat](https://gitter.im/paypal/squbs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) is a great starting point for such discussions. Once we get to a certain conclusion, please file an issue in the [issue tracker](https://github.com/paypal/squbs/issues) with reference to the forum discussion.
 
 ## Bugs
-If you have determined you are facing a bug or defect, please log the bug in the [issue tracker](https://github.com/paypal/squbs/issues). If the bug has any reference to forum discussions, please add the reference to the forum discussion.
+If you have determined you are facing a bug or defect, please log the bug in the [issue tracker](https://github.com/paypal/Yurita/issues). If the bug has any reference to forum discussions, please add the reference to the forum discussion.
 
 ## Contribution Process
 The standard way of contributing ideas/features and bug fixes is by pull requests.
 
 * Make sure you have an active github account.
-* [Fork](https://help.github.com/articles/fork-a-repo/) the squbs repo into your account.
+* [Fork](https://help.github.com/articles/fork-a-repo/) the yurita repo into your account.
 * Make modifications to the master branch. If the contribution is a bug fix that needs to go into a release branch, please provide that as a comment on the pull request (below).
 * Provide test cases and ensure the test coverage of the added code and functionality.
 * If the change impacts documentation, please provide documentation fixes or additional documentation for the feature.
@@ -37,3 +35,4 @@ pull request will be accepted **only if** these cannot be separated into individ
 reflecting each issue separately.
 
 Thank you very much in advance!
+
