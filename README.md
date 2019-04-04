@@ -16,6 +16,16 @@ Yurita is an open source project for developing large scale anomaly detection mo
 
 ## Getting Started
 
+## Building Yurita 
+
+## Testing Yurita
+
+## Running Checkstyle
+
+## Job Management 
+
+## Developers
+
 ## Contributing to Yurita
 
 Thank you very much for contributing to Yurita. Please read the [contribution guidelines](CONTRIBUTING.md) for the process.
