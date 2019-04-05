@@ -1,4 +1,5 @@
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4536adca78704f699198a03f9b92a133)](https://app.codacy.com/app/r39132/yurita?utm_source=github.com&utm_medium=referral&utm_content=paypal/yurita&utm_campaign=Badge_Grade_Dashboard)
 [![logo](docs/YuritaLogo.png)](https://github.paypal.com/pages/EservDataProcessing/Yurita/)
 # Yurita
 
