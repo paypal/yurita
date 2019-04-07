@@ -121,44 +121,4 @@ object AnomalyExampleApp extends App {
 
   // dataset extended api
   df.detectAnomalies(workload).map(_.toString).foreach(println(_))
-
-
-  // TODO: flattening and CSV export - should be part of the framework
-  //  import org.apache.spark.sql.types.{StringType, StructField, StructType}
-  //
-  //  // create reports
-  //  val reportsDataset = df.detectAnomalies(workload).map {
-  //    case (col: String, report: Categorical.DistributionReport[String], window: WindowRange) => (col, report, window)
-  //  }
-  //  reportsDataset.cache()
-  //
-  //  val colArray = Seq("surname", "gender")
-  //
-  //  val metricDatasets = colArray.map { col => (col, reportsDataset.filter($"_1" === col)) }
-  //
-  //  val schemaToRows = metricDatasets.map { case (column, reportsDataset) =>
-  //
-  //    // create schema
-  //    val distributionCols = reportsDataset.flatMap(_._2.currentDist.keys).distinct.collect()
-  //    val reportCols = Array("metric", "window", "entropy")
-  //    val schemaCols = (reportCols ++ distributionCols)
-  //      .map(fieldName => StructField(fieldName, StringType, nullable = true))
-  //    val schema = StructType(schemaCols)
-  //
-  //    // format data
-  //    val flattenReport = reportsDataset.map { case (col, report, window) =>
-  //      val statRes = report.statisticalRes.map(_.result.toString).getOrElse("0")
-  //      val reportSeq = Seq(col, window, statRes)
-  //      val distributioSeq = distributionCols.map(report.currentDist.getOrElse(_, 0).toString)
-  //      Row.fromSeq(reportSeq ++ distributioSeq)
-  //    }
-  //    (column, schema, flattenReport)
-  //  }
-  //
-  //  schemaToRows.foreach { case (column, schema, rowDataset) =>
-  //    val formattedDf = spark.createDataFrame(rowDataset.rdd, schema)
-  //    formattedDf.coalesce(1).write.mode("append").option("header", "true").csv("<MY_HDFS_LOCATION>")
-  //  }
-  //
-  //  reportsDataset.unpersist()
 }
