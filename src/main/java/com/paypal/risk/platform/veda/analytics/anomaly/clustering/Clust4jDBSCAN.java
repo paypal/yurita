@@ -13,20 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.paypal.risk.platform.veda.analytics.anomaly.clustering;
 
 import com.clust4j.algo.DBSCAN;
 import com.clust4j.algo.DBSCANParameters;
 import com.clust4j.algo.HDBSCAN;
 import com.clust4j.algo.HDBSCANParameters;
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+
+
 
 /**
- * POC of running DBSCAN using the clustj lib
+ * POC of running DBSCAN using the clustj lib.
  */
 public class Clust4jDBSCAN {
 
@@ -35,7 +37,7 @@ public class Clust4jDBSCAN {
   }
 
   private static double[] point(double n) {
-    return new double[]{n, n, n};
+    return new double[] {n, n, n};
   }
 
   private static List<double[]> clusterGen(int size) {
@@ -72,8 +74,8 @@ public class Clust4jDBSCAN {
     final Array2DRowRealMatrix mat = new Array2DRowRealMatrix(getExampleData());
 
     HDBSCAN hdb = new HDBSCANParameters(5)
-      .setMinClustSize(5)
-      .fitNewModel(mat);
+        .setMinClustSize(5)
+        .fitNewModel(mat);
 
     StringBuilder sb = new StringBuilder("\n");
     for (int i = 0; i < hdb.getLabels().length; i++) {
@@ -81,11 +83,11 @@ public class Clust4jDBSCAN {
     }
 
     String s = new StringBuilder()
-      .append("name: " + hdb.getName() + "\n")
-      .append("clusters: " + hdb.getNumberOfIdentifiedClusters() + "\n")
-      .append("noise points: " + hdb.getNumberOfNoisePoints() + "\n")
-      .append("labels: " + sb + "\n")
-      .toString();
+        .append("name: " + hdb.getName() + "\n")
+        .append("clusters: " + hdb.getNumberOfIdentifiedClusters() + "\n")
+        .append("noise points: " + hdb.getNumberOfNoisePoints() + "\n")
+        .append("labels: " + sb + "\n")
+        .toString();
 
     System.out.println(s);
   }
@@ -93,31 +95,42 @@ public class Clust4jDBSCAN {
   private static double[][] mergeInputToArr(List<double[]> points,
                                             List<List<double[]>> refPoints) {
     // merge all points to a single matrix
-    // the int here is too small for production but library requires a double[][] which support only int dimensions
+    // the int here is too small for production but library requires a double[][]
+    // which support only int dimensions
     int pointsCount = points.size();
-    for (List<double[]> reflist : refPoints) pointsCount += reflist.size();
+    for (List<double[]> reflist : refPoints) {
+      pointsCount += reflist.size();
+    }
     double[][] matrix = new double[pointsCount][points.get(0).length];
     int i = 0;
-    for (double[] p : points) matrix[i++] = p;
+    for (double[] p : points) {
+      matrix[i++] = p;
+    }
     for (Iterable<double[]> reflist : refPoints) {
-      for (double[] p : reflist) matrix[i++] = p;
+      for (double[] p : reflist) {
+        matrix[i++] = p;
+      }
     }
     return matrix;
   }
 
+  /**
+   * Creates a clustering container class that defines the clustering algorithm specifications.
+   */
   public static Clustering cluster(List<double[]> candidatePoints,
                                    List<List<double[]>> refPoints,
                                    Double eps,
                                    int minNeighbors) {
 
-    Array2DRowRealMatrix pointsMatrix = new Array2DRowRealMatrix(mergeInputToArr(candidatePoints, refPoints));
+    Array2DRowRealMatrix pointsMatrix = new Array2DRowRealMatrix(mergeInputToArr(candidatePoints,
+        refPoints));
     DBSCAN dbscan = new DBSCANParameters(eps)
-      .setMinPts(minNeighbors)
-      .fitNewModel(pointsMatrix);
+        .setMinPts(minNeighbors)
+        .fitNewModel(pointsMatrix);
 
     return new Clustering(dbscan.getName(),
-      dbscan.getNumberOfIdentifiedClusters(),
-      dbscan.getNumberOfNoisePoints(),
-      dbscan.getLabels());
+        dbscan.getNumberOfIdentifiedClusters(),
+        dbscan.getNumberOfNoisePoints(),
+        dbscan.getLabels());
   }
 }

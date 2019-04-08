@@ -16,6 +16,8 @@ buildscript {
 
 plugins {
     id 'scala'
+    id 'scalaStyle' version "0.9.0"
+    id 'checkstyle'
     id "com.github.hierynomus.license" version "0.15.0"
     id 'maven-publish'
 }
@@ -26,6 +28,24 @@ repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
+}
+
+scalaStyle {
+    configLocation = "scalastyle_config.xml"
+    source = "src/main/scala"
+}
+checkstyle {
+    toolVersion "7.8.2"
+    configFile file("checkstyle.xml")
+    sourceSets = [project.sourceSets.main]
+}
+checkstyleMain {
+    source='src/main/java'
+}
+assemble {
+    dependsOn scalaStyle
+    dependsOn checkstyleMain
+    tasks.findByName('checkstyleMain').mustRunAfter 'scalaStyle'
 }
 
 dependencies {

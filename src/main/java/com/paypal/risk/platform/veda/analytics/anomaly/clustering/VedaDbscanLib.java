@@ -13,18 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.paypal.risk.platform.veda.analytics.anomaly.clustering;
 
-import org.apache.commons.math3.ml.distance.EuclideanDistance;
+package com.paypal.risk.platform.veda.analytics.anomaly.clustering;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.math3.ml.distance.EuclideanDistance;
+
+
 
 // internal implementation of a customized DBSCAN application
 public class VedaDbscanLib {
 
-  // will return points that did not belong to any cluster
-  public static List<double[]> returnOutliers(Iterable<double[]> points, List<List<double[]>> refPoints, Double eps, int minNeighbors) {
+  /**
+   * Will return points that did not belong to any cluster.
+   */
+  public static List<double[]> returnOutliers(Iterable<double[]> points,
+                                              List<List<double[]>> refPoints,
+                                              Double eps, int minNeighbors) {
     List<double[]> anomalies = new ArrayList<>();
     for (double[] p : points) {
       int neighbors = 0;
@@ -33,12 +39,18 @@ public class VedaDbscanLib {
           double distance = new EuclideanDistance().compute(p, refP);
           if (distance <= eps) {
             neighbors += 1;
-            if (neighbors == minNeighbors) break;
+            if (neighbors == minNeighbors) {
+              break;
+            }
           }
         }
-        if (neighbors == minNeighbors) break;
+        if (neighbors == minNeighbors) {
+          break;
+        }
       }
-      if (neighbors < minNeighbors) anomalies.add(p);
+      if (neighbors < minNeighbors) {
+        anomalies.add(p);
+      }
     }
     return anomalies;
   }

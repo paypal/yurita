@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.paypal.risk.platform.veda.analytics.anomaly.clustering;
 
 // container class for holding a clustering algorithm result
@@ -22,6 +23,9 @@ public class Clustering {
   private int numNoisePoints;
   private int[] labels;
 
+  /**
+    Initializes clustering container with a specific clustering algorithm.
+   */
   public Clustering(String algName, int numClusters, int numNoisePoints, int[] labels) {
     this.algName = algName;
     this.numClusters = numClusters;

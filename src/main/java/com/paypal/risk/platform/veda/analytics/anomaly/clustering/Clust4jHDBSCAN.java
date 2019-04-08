@@ -13,19 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.paypal.risk.platform.veda.analytics.anomaly.clustering;
 
 import com.clust4j.algo.HDBSCAN;
 import com.clust4j.algo.HDBSCANParameters;
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+
+
 
 /**
- * POC of running HDBSCAN using the clustj lib */
+ * POC of running HDBSCAN using the clustj lib.
+ */
 public class Clust4jHDBSCAN {
 
   public static void main(String[] args) {
@@ -33,7 +36,7 @@ public class Clust4jHDBSCAN {
   }
 
   private static double[] point(double n) {
-    return new double[]{n, n, n};
+    return new double[] {n, n, n};
   }
 
   private static List<double[]> clusterGen(int size) {
@@ -70,8 +73,8 @@ public class Clust4jHDBSCAN {
     final Array2DRowRealMatrix mat = new Array2DRowRealMatrix(getExampleData());
 
     HDBSCAN hdb = new HDBSCANParameters(5)
-      .setMinClustSize(5)
-      .fitNewModel(mat);
+        .setMinClustSize(5)
+        .fitNewModel(mat);
 
     StringBuilder sb = new StringBuilder("\n");
     for (int i = 0; i < hdb.getLabels().length; i++) {
@@ -79,11 +82,11 @@ public class Clust4jHDBSCAN {
     }
 
     String s = new StringBuilder()
-      .append("name: " + hdb.getName() + "\n")
-      .append("clusters: " + hdb.getNumberOfIdentifiedClusters() + "\n")
-      .append("noise points: " + hdb.getNumberOfNoisePoints() + "\n")
-      .append("labels: " + sb + "\n")
-      .toString();
+        .append("name: " + hdb.getName() + "\n")
+        .append("clusters: " + hdb.getNumberOfIdentifiedClusters() + "\n")
+        .append("noise points: " + hdb.getNumberOfNoisePoints() + "\n")
+        .append("labels: " + sb + "\n")
+        .toString();
 
     System.out.println(s);
   }
@@ -91,55 +94,75 @@ public class Clust4jHDBSCAN {
   private static double[][] mergeInputToArr(List<double[]> points,
                                             List<List<double[]>> refPoints) {
     // merge all points to a single matrix
-    // the int here is too small for production but library requires a double[][] which support only int dimensions
+    // the int here is too small for production but library requires a double[][] which
+    // support only int dimensions
     int pointsCount = points.size();
-    for (List<double[]> reflist : refPoints) pointsCount += reflist.size();
+    for (List<double[]> reflist : refPoints) {
+      pointsCount += reflist.size();
+    }
     double[][] matrix = new double[pointsCount][points.get(0).length];
     int i = 0;
-    for (double[] p : points) matrix[i++] = p;
+    for (double[] p : points) {
+      matrix[i++] = p;
+    }
     for (Iterable<double[]> reflist : refPoints) {
-      for (double[] p : reflist) matrix[i++] = p;
+      for (double[] p : reflist) {
+        matrix[i++] = p;
+      }
     }
     return matrix;
   }
 
-  private static List<double[]> extractNoisePoints(List<double[]> candidatePoints, Array2DRowRealMatrix pointsMatrix, int[] clusterLabels) {
-    int NOISE_LABEL = -1;
+  private static List<double[]> extractNoisePoints(List<double[]> candidatePoints,
+                                                   Array2DRowRealMatrix pointsMatrix,
+                                                   int[] clusterLabels) {
+    int noiselabel = -1;
     List<double[]> noisePoints = new ArrayList<>();
     for (int i = 0; i < candidatePoints.size(); i++) {
-      if (clusterLabels[i] == NOISE_LABEL) noisePoints.add(pointsMatrix.getRow(i));
-      if (!Arrays.equals(candidatePoints.get(i), pointsMatrix.getRow(i)))
+      if (clusterLabels[i] == noiselabel) {
+        noisePoints.add(pointsMatrix.getRow(i));
+      }
+      if (!Arrays.equals(candidatePoints.get(i), pointsMatrix.getRow(i))) {
         System.out.println("Warning points to not match!");
+      }
     }
     return noisePoints;
   }
 
+  /**
+   * Returns a list of outliers from clustering.
+   */
   public static List<double[]> returnOutliers(List<double[]> candidatePoints,
                                               List<List<double[]>> refPoints,
                                               int minCorePoints,
                                               int minClusterSizeForExtraction) {
 
-    Array2DRowRealMatrix pointsMatrix = new Array2DRowRealMatrix(mergeInputToArr(candidatePoints, refPoints));
+    Array2DRowRealMatrix pointsMatrix = new Array2DRowRealMatrix(mergeInputToArr(candidatePoints,
+        refPoints));
     HDBSCAN hdb = new HDBSCANParameters(minCorePoints)
-      .setMinClustSize(minClusterSizeForExtraction)
-      .fitNewModel(pointsMatrix);
+        .setMinClustSize(minClusterSizeForExtraction)
+        .fitNewModel(pointsMatrix);
 
     return extractNoisePoints(candidatePoints, pointsMatrix, hdb.getLabels());
   }
 
+  /**
+   * Creates a clustering container class that defines the clustering algorithm specifications.
+   */
   public static Clustering cluster(List<double[]> candidatePoints,
                                    List<List<double[]>> refPoints,
                                    int minCorePoints,
                                    int minClusterSizeForExtraction) {
 
-    Array2DRowRealMatrix pointsMatrix = new Array2DRowRealMatrix(mergeInputToArr(candidatePoints, refPoints));
+    Array2DRowRealMatrix pointsMatrix = new Array2DRowRealMatrix(mergeInputToArr(candidatePoints,
+        refPoints));
     HDBSCAN hdb = new HDBSCANParameters(minCorePoints)
-      .setMinClustSize(minClusterSizeForExtraction)
-      .fitNewModel(pointsMatrix);
+        .setMinClustSize(minClusterSizeForExtraction)
+        .fitNewModel(pointsMatrix);
 
     return new Clustering(hdb.getName(),
-      hdb.getNumberOfIdentifiedClusters(),
-      hdb.getNumberOfNoisePoints(),
-      hdb.getLabels());
+        hdb.getNumberOfIdentifiedClusters(),
+        hdb.getNumberOfNoisePoints(),
+        hdb.getLabels());
   }
 }
