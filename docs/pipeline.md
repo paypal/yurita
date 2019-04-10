@@ -67,5 +67,19 @@ ___There are different built-in referencing strategies:___
 |Multiple references|WindowReference.MultiRef.allWindowsInLastDuration(“24 hours”)|allWindowsInLastDuration <br> lastNWindows <br> dailyWindows <br> windowsBetweenTs <br> recurringInterval <br> recurringDuration <br>|
 
 
+Users can add custom reference strategies by extending the WindowRefStrategy trait
 
+Reference Watermark: since historical references consume application resource we follow the stream processing paradigm and remove them from memory according to a watermark. By default the global watermark of the dataset is used however we also enable fine tuning the watermark per metric.
 
+It is also possible to add data from the current window that is being evaluated can also be part of the reference windows.
+
+```
+// choose ref strategy
+val ref = WindowReference.MultiRef.allWindowsInLastDuration("1 hour")
+ 
+// specify reference watermark
+val wref = ref withWatermark "2 hours"
+ 
+// include current window in the reference
+val iref = ref includeCurrentWindowInRef
+```
