@@ -10,11 +10,13 @@ ___Built-in statistical functions:___
 The model allow also to specify how to merge the reference windows into a reference statistical value before comparing it to the current aggregation that we want to evaluate. It allows also to plugin-in a function that will decide if the statistical result is an anomaly.
 
 ___Built-in reference values functions:___
+
 |function|description|
 |--------|-----------|
 |avgMeanAbdStdRef|creates reference values: the "average of averages" and average stdev of the historical windows|
 
 ___Built-in threshold functions:___
+
 |function|description|
 |--------|-----------|
 |simpleThreshold|decides if the statistical function result crosses a threshold then classify it as an anomaly|
