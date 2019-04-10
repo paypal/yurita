@@ -1,6 +1,6 @@
 Each component in the API was designed to be pluggable allowing users to mix and match between the framework's built-in components and user provided custom components
 
-
+(images/HighLevelDataFlow.png)
 
 
 1. Events: Input Dataset each record has a timestamp
