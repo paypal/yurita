@@ -1,4 +1,3 @@
-    
 site_name: yurita
 theme: readthedocs
 repo_url: https://github.com/paypal/yurita
@@ -10,7 +9,6 @@ pages:
     - 'License': 'LICENSE.txt'
     - 'Presentations': 'presentations.md'
 - Documentation:
-    - 'Overview': 'overview.md'
     - 'High-level data flow': 'data-flow.md'
     - 'Architecture':
       - 'Anomaly Pipeline': 'pipeline.md'
