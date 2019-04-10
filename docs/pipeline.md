@@ -83,3 +83,33 @@ val wref = ref withWatermark "2 hours"
 // include current window in the reference
 val iref = ref includeCurrentWindowInRef
 ```
+# Anomaly Detection Model 
+
+Compares current window aggregation with selected reference windows and detect anomalies, the model can also produce intermediate result (e.g. the root cause of the anomaly).
+
+More on models types can be found in the ___Models___ section.
+
+Users should take into account that both the current window and historical windows can keep getting updated according their specified watermark.
+Designed for responsiveness, detection will run after each stream trigger, even if the current time window is incomplete (while the references windows might be complete
+
+Creating custom models by extending this trait:
+
+```
+/** modeling of when a data window model is considered an anomaly, can contain any custom logic */
+trait DetectionModel extends Serializable {
+ 
+  /** checks if aggr contains anomaly, None results are ignored */
+  def detect(aggr: DataAggregation, refAggr: Seq[DataAggregation]): Option[Report]
+}
+```
+# Report
+
+The output of an anomaly detection analysis, produced when examining each latest aggregation. The report interface is completely flexible and can contain any information required for post processing and extracting insights.
+Reports contain also metadata from the processing flow like what is the current time window and which windows were selected as references for the model.
+
+
+Creating custom reports by extending this trait:
+```
+/** response of the anomaly model check, even if no anomaly was detected, can have any logic */
+trait Report extends Serializable {...}
+```
