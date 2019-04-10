@@ -63,8 +63,8 @@ ___There are different built-in referencing strategies:___
 |type|example|Canned options|
 |----|-------|--------------|
 |No reference|WindowReference.NOREF|•NOREF|
-|Single reference|WindowReference.SingleRef.singleWindowBeforeDuration(“24 hours”)|•lastWindow
-•previousNthWindow
+|Single reference|WindowReference.SingleRef.singleWindowBeforeDuration(“24 hours”)|•lastWindow <Enter>
+•previousNthWindow <Enter>
 •singleWindowBeforeDuration|
 
 
