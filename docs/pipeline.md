@@ -58,4 +58,28 @@ Since anomalies can have many different patterns we would need a mechanism that 
 
 Window Reference allows us to have strategies for selecting historical windows as reference data when we evaluate if a the current window is anomalous.
 
+___There are different built-in referencing strategies:___
+
+|type|example|Canned options|
+|----|-------|--------------|
+|No reference|WindowReference.NOREF|•NOREF|
+|Single reference|WindowReference.SingleRef.singleWindowBeforeDuration(“24 hours”)|•lastWindow
+•previousNthWindow
+•singleWindowBeforeDuration|
+
+
+
+Multiple references
+
+WindowReference.MultiRef.allWindowsInLastDuration(“24 hours”)
+
+•allWindowsInLastDuration
+•lastNWindows
+•dailyWindows
+•windowsBetweenTs
+•recurringInterval
+•recurringDuration
+
+
+
 
