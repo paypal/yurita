@@ -3,7 +3,7 @@ The workload is the actual computation that will be executed, multiple pipelines
 Full history scan: will check for anomalies in all windows in the system including historical windows (that haven't been cleared by a watermark). This is useful for running in batch mode for research.
 Detection on window end: will execute anomaly detection on a window only when it ends, this is different then the default behavior that will check for anomaly in the latest window at each trigger. A window "end" is defined as the time when a later window was detected. e.g. for fixed 1 hour windows, the first event in window 15:00-16:00 (or later) will trigger anomaly detection on window 14:00-15:00
 
-![workload](images\workload.png)
+![workload](images/workload.png)
 
 Creating the workload:
 ```
