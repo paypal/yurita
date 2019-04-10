@@ -64,19 +64,12 @@ ___There are different built-in referencing strategies:___
 |----|-------|--------------|
 |No reference|WindowReference.NOREF|NOREF|
 |Single reference|WindowReference.SingleRef.singleWindowBeforeDuration(“24 hours”)|lastWindow <br>previousNthWindow <br> singleWindowBeforeDuration|
-
-
-
-Multiple references
-
-WindowReference.MultiRef.allWindowsInLastDuration(“24 hours”)
-
-•allWindowsInLastDuration
-•lastNWindows
-•dailyWindows
-•windowsBetweenTs
-•recurringInterval
-•recurringDuration
+|Multiple references|WindowReference.MultiRef.allWindowsInLastDuration(“24 hours”)|allWindowsInLastDuration <br> 
+lastNWindows <br> 
+dailyWindows <br>
+windowsBetweenTs <br>
+recurringInterval <br>
+recurringDuration <br>|
 
 
 
