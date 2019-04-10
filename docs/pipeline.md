@@ -118,11 +118,6 @@ More on models types can be found in the ___Models___ section.
 
 ![detection model](images/detectionModel.png)
 
-*Users should take into account that both the current window and historical windows can keep getting updated according their specified watermark.*
-Designed for responsiveness, detection will run after each stream trigger, even if the current time window is incomplete (while the references windows might be complete)
-
-![timecut](images\timecut.png)
-
 Creating custom models by extending this trait:
 
 ```
