@@ -1,3 +1,30 @@
+The main component of the anomaly detection framework. The pipeline contains the logical definitions of the pipeline components (not the the actual computation).
+
+```
+/**
+ * a container class for defining anomaly detection pipeline components
+ * @param colKey         name of the column to be tracked by this pipeline
+ * @param windowStrategy defines how to window the data stream
+ * @param windowRefStrategy defines which windows a the detection model will use as reference
+ * @param aggrFactory  used for creating new data windows
+ * @param anomalyModel   model for deciding when data in a window is considered an anomaly
+ */
+case class AnomalyPipeline(colKey: String,
+  windowStrategy: WindowStrategy,
+  windowRefStrategy: WindowRefStrategy,
+  aggrFactory: DataAggregationFactory,
+  anomalyModel: DetectionModel)
+```
+
+Pipelines can be created directly or with a builder. The builder is just syntactic sugar for creating multiple pipelines:
+
+```
+val categoricalPipe = PipelineBuilder()
+  .onColumns(...)
+  .setWindowing(...)
+  .setWindowReferencing(...)
+  .buildModel(...)
+```
 # Windowing
 
 | type | example | description |
@@ -6,11 +33,11 @@
 |Fixed Windows| Window.fixed(“1 hour”)|Creates windows of fixed duration (no overlap)|
 |Sliding Window|Window.sliding(“1 hour”, “10 minutes”)|Creates a sliding window of fixed size, sliding every specified duration (with overlap)|
 
-Fixed windows are the best practice for production since Events will get replicated for each window slide they belong to. Small sliding steps can have a significant performance impact
+*Fixed windows are the best practice for production since Events will get replicated for each window slide they belong to. Small sliding steps can have a significant performance impact*
 
+![windows](images/windows.png)
 
-
-User can also create their own custom windowing by extending the WindowStrategy trait.
+*User can also create their own custom windowing by extending the WindowStrategy trait.*
 
 # Aggregation
 
@@ -89,8 +116,12 @@ Compares current window aggregation with selected reference windows and detect a
 
 More on models types can be found in the ___Models___ section.
 
-Users should take into account that both the current window and historical windows can keep getting updated according their specified watermark.
-Designed for responsiveness, detection will run after each stream trigger, even if the current time window is incomplete (while the references windows might be complete
+![detection model](images/detectionModel.png)
+
+*Users should take into account that both the current window and historical windows can keep getting updated according their specified watermark.*
+Designed for responsiveness, detection will run after each stream trigger, even if the current time window is incomplete (while the references windows might be complete)
+
+![timecut](images\timecut.png)
 
 Creating custom models by extending this trait:
 
