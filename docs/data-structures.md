@@ -26,4 +26,15 @@ Raw – stores all data points, memory intensive and not recommended for product
 |maxWindowCapacity|10,000| the maximal raw events to keep in each window container
 |
 
+# Data Frame API
 
+We extend Spark's DataFrame API by adding the workload to the computation graph.
+
+```
+// import the Dataframe api extension
+import com.paypal.risk.platform.veda.analytics.Implicits._
+ 
+// add workload to computation
+df.detectAnomalies(workload)
+
+```
