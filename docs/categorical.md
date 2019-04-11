@@ -16,6 +16,7 @@ ___Built-in reference aggregation functions:___
 |avgRef|creates a reference aggregation that is the average for each value in the historical references|
 
 ___Built-in threshold functions:___
+
 |function|description|
 |--------|-----------|
 |statResultThreshold|decides if the statistical function result crosses a threshold then classify it as an anomaly|
