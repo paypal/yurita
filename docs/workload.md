@@ -1,3 +1,5 @@
+# Overview
+
 The workload is the actual computation that will be executed, multiple pipelines compose a single workload. its possible to control how the workload executes using modes:
 
 Full history scan: will check for anomalies in all windows in the system including historical windows (that haven't been cleared by a watermark). This is useful for running in batch mode for research.
