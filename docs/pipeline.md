@@ -1,4 +1,4 @@
-# pipeline
+# Overview
 
 The main component of the anomaly detection framework. The pipeline contains the logical definitions of the pipeline components (not the the actual computation).
 
