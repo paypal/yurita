@@ -2,7 +2,7 @@ To allow model execution to be scalable and robust, the framework internally use
 
 # Data containers
 
-Data structures are used for holding historical windows data. The containers API exposes efficient statistics (e.g. average, stdev) and internally cache calculations to avoid re-computation and boost performance
+Data structures are used for holding historical window data. The containers API exposes efficient statistics (e.g. average, stdev) and internally cache calculations to avoid re-computation and boost performance
 
 **Container types**
 
