@@ -23,8 +23,7 @@ Raw – stores all data points, memory intensive and not recommended for product
 |param|default|description|
 |-----|-------|-----------|
 |containerType|Uniform Sampling| the type of container to use|
-|maxWindowCapacity|10,000| the maximal raw events to keep in each window container
-|
+|maxWindowCapacity|10,000| the maximal raw events to keep in each window container|
 
 # Data Frame API
 
