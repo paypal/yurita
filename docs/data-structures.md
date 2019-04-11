@@ -1,17 +1,12 @@
 To allow model execution to be scalable and robust, the framework internally uses streaming oriented data structures
 
 # Data containers
-Data structures for holding historical windows data
 
-Containers API expose efficient statistics (e.g. average, stdev) 
+Data structures are used for holding historical windows data. The containers API exposes efficient statistics (e.g. average, stdev) and internally cache calculations to avoid re-computation and boost performance
 
-Containers internally cache calculations to avoid re-computation and boost performance
-
-# Container types
+**Container types**
 
 Uniform Sampling (default) – stores only a uniform sample of the data points in a window, uses Reservoir Sampling algorithm
-
-
 
 Sorted Uniform Sampling – same as Uniform Sampling but points are also ordered, supports more advanced statistics like median and percentiles approximation
 *currently supports only  long values
