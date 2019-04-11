@@ -15,6 +15,7 @@ pages:
       - 'Anomaly Workload': 'workload.md'
       - 'DataFrame API Extension': 'df-api-ext.md'
     - 'Models':
+      - 'Built In Models': 'builtin.md':
       - 'Categorical Model': 'categorical.md'
       - 'Numerical Model': 'numerical.md'
       - 'Density Based Clustering Model': 'density.md'
