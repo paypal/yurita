@@ -1,3 +1,5 @@
+# Overview
+
 Track continuous numerical data points and detect points that are statistically significant.
 Users can provide the statistical function for the model or use built-in functions.
 
