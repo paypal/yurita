@@ -5,7 +5,7 @@ ___Built-in statistical functions:___
 
 |function|description|
 |--------|-----------|
-|Entropy||
+|Entropy|![sum](images/sumfn.png)|
 
 The model allows also to plug-in a function how to merge the reference windows into a single reference aggregation before comparing it to the current aggregation that we want to evaluate. It allows also to plugin-in a function that will decide if the statistical result is an anomaly.
 
