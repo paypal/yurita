@@ -8,8 +8,6 @@ Built-in statistical functions:
 |DBSCAN|applies an optimized version of the algorithm that only detect outliers|
 |HDBSCAN|applies full clustering and including dynamic optimizations like kd-trees, ball-trees, prim's MST, boruvka MST|
 
-![density](images/densityclustering.png)
-
 Creating a model with a built-in function:
 
 ```
