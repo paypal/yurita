@@ -7,7 +7,7 @@ Containers API expose efficient statistics (e.g. average, stdev)
 
 Containers internally cache calculations to avoid re-computation and boost performance
 
-# Container types:
+# Container types
 
 Uniform Sampling (default) – stores only a uniform sample of the data points in a window, uses Reservoir Sampling algorithm
 
