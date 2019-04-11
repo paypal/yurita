@@ -13,7 +13,6 @@ pages:
     - 'Architecture':
       - 'Anomaly Pipeline': 'pipeline.md'
       - 'Anomaly Workload': 'workload.md'
-      - 'DataFrame API Extension': 'df-api-ext.md'
     - 'Models':
       - 'Built In Models': 'builtin.md'
       - 'Categorical Model': 'categorical.md'
