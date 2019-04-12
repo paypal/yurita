@@ -2,17 +2,15 @@
 [![logo](docs/YuritaLogo.png)](https://github.paypal.com/pages/EservDataProcessing/Yurita/)
 # Yurita
 
-[![Join the chat at https://gitter.im/paypal/squbs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/paypal/squbs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/paypal/squbs.svg?branch=master)](https://travis-ci.org/paypal/squbs)
-[![Codacy Badge](https://api.codacy.com/project/badge/57368c396cb649c590e4ba678675e55c)](https://www.codacy.com/app/akara-sucharitakul/squbs)
-[![Codacy Coverage](https://api.codacy.com/project/badge/coverage/57368c396cb649c590e4ba678675e55c)](https://www.codacy.com/app/akara-sucharitakul/squbs)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.squbs/squbs-unicomplex_2.12/badge.svg?style=flat)](http://search.maven.org/#search|ga|1|g:org.squbs)
+[![Join the chat at https://gitter.im/pp-yurita](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pp-yurita?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/paypal/yurita.svg?branch=master)](https://travis-ci.org/paypal/yurita)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4536adca78704f699198a03f9b92a133)](https://app.codacy.com/app/r39132/yurita?utm_source=github.com&utm_medium=referral&utm_content=paypal/yurita&utm_campaign=Badge_Grade_Dashboard)
 [![License](https://img.shields.io/badge/License-Apache%202.0-red.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Documentation Status](https://readthedocs.org/projects/squbs/badge/?version=latest)](https://squbs.readthedocs.io)
+[![Documentation Status](https://readthedocs.org/projects/yurita/badge/?version=latest)](https://yurita.readthedocs.io)
 
 
 Yurita is an open source project for developing large scale anomaly detection models
-[Site](https://github.paypal.com/pages/EservDataProcessing/Yurita/)
+[Site](https://github.com/paypal/yurita/)
 
 ## Getting Started
 
