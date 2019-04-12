@@ -13,6 +13,7 @@ pages:
     - 'Architecture':
       - 'Anomaly Pipeline': 'pipeline.md'
       - 'Anomaly Workload': 'workload.md'
+      - 'Models': 'model.md'
     - 'Models':
       - 'Built In Models': 'builtin.md'
       - 'Categorical Model': 'categorical.md'
