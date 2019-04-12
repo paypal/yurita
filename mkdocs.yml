@@ -6,7 +6,7 @@ pages:
 - Overview: 'index.md'
 - About:
     - 'Contributing': 'CONTRIBUTING.md'
-    - 'License': 'LICENSE.txt'
+    - 'License': 'LICENSE.md'
     - 'Presentations': 'presentations.md'
 - Documentation:
     - 'High-level data flow': 'data-flow.md'
