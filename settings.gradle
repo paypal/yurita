@@ -1,2 +1,11 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'scalaStyle') {
+                useModule("org.github.ngbinh.scalastyle:gradle-scalastyle-plugin_2.11:${requested.version}")
+            }
+        }
+    }     
+} 
 rootProject.name = 'yurita'
 enableFeaturePreview('STABLE_PUBLISHING')
