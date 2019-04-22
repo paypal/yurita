@@ -34,6 +34,9 @@ foo@bar:~/yurita$ ./gradlew clean build
 foo@bar:~/yurita$ ./gradlew publishToMavenLocal
 ```
 ### Install from Maven Central
+
+*Please build the project from source at this time or try our dockerized Yurita demo application to build automatically as we make the project jar available on Maven Central in upcoming few days.*
+
 ```xml
 <dependency>
     <groupId>io.github.paypal</groupId>
@@ -54,6 +57,21 @@ Other Required Dependencies:
     <version>2.4.1</version>
 </dependency>
 ```
+
+## Running Dockerized Demo Application
+
+`YuritaSampleApp` directory in the Yurita project root path contains a standalone scala project for you to play around with. Run the demo through Docker inside `YuritaSampleApp` directory as shown below.
+
+### Build Docker Image
+```console
+foo@bar:~/YuritaSampleApp$ docker build -f Dockerfile -t yuritademo .
+```
+
+### Run Docker Container
+```console
+foo@bar:~/YuritaSampleApp$ docker run -p 8080:8080 -t yuritademo
+```
+
 ## Writing Your First App
 Create SparkSession with your own configurations
 ```scala
