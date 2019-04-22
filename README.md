@@ -13,7 +13,7 @@
   limitations under the License.
 -->
 
-[![logo](docs/YuritaLogo.png)](https://github.paypal.com/pages/EservDataProcessing/Yurita/)
+[![logo](docs/YuritaLogo.png)](https://yurita.readthedocs.io)
 # Yurita
 
 [![Join the chat at https://gitter.im/pp-yurita](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pp-yurita?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
