@@ -28,6 +28,9 @@ Yurita is an open source project for developing large scale anomaly detection mo
 
 ## Getting Started
 
+### Documentation
+Documentation on Yurita's architecture, statistical models available, anomaly detection pipeline/data flow, etc can be found here: <https://yurita.readthedocs.io/en/latest/>
+
 ### Build from source
 ```console
 foo@bar:~/yurita$ ./gradlew clean build
