@@ -28,6 +28,110 @@ Yurita is an open source project for developing large scale anomaly detection mo
 
 ## Getting Started
 
+### Documentation
+Documentation on Yurita's architecture, statistical models available, anomaly detection pipeline/data flow, etc can be found here: <https://yurita.readthedocs.io/en/latest/>
+
+### Build from source
+```console
+foo@bar:~/yurita$ ./gradlew clean build
+foo@bar:~/yurita$ ./gradlew publishToMavenLocal
+```
+### Install from Maven Central
+
+*Please build the project from source at this time or try our dockerized Yurita demo application to build automatically as we make the project jar available on Maven Central in upcoming few days.*
+
+```xml
+<dependency>
+    <groupId>io.github.paypal</groupId>
+    <artifactId>yurita</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+Other Required Dependencies:
+```xml
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-core_2.11</artifactId>
+    <version>2.4.1</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-sql_2.11</artifactId>
+    <version>2.4.1</version>
+</dependency>
+```
+
+## Running Dockerized Demo Application
+
+`YuritaSampleApp` directory in the Yurita project root path contains a standalone scala project for you to play around with. Run the demo through Docker inside `YuritaSampleApp` directory as shown below.
+
+### Build Docker Image
+```console
+foo@bar:~/YuritaSampleApp$ docker build -f Dockerfile -t yuritademo .
+```
+
+### Run Docker Container
+```console
+foo@bar:~/YuritaSampleApp$ docker run -p 8080:8080 -t yuritademo
+```
+
+## Writing Your First App
+Create SparkSession with your own configurations
+```scala
+val appName = "AnomalyDetectionAPI"
+val sparkConf = new SparkConf().setAppName(appName).setMaster("local[*]")
+val spark = SparkSession
+    .builder()
+    .config(sparkConf)
+    .getOrCreate()
+```
+
+<br/>
+
+Create dataframe of your data points/attributes with what time interval they occur on
+```scala
+//sample window timestamp
+val window1 = (dateFormat.parse("2011-01-18 01:00:00.0"), dateFormat.parse("2011-01-18 01:00:10.0"))
+```
+```scala
+val inputDF: DataFrame = Seq(
+    Person("Ned", "Stark", 40, 40.6, "M", Array(5.5), getTimestamp(window1)),
+    Person("Arya", "Stark", 9, 40.1, "F", Array(5.6), getTimestamp(window2)),
+    Person("Sansa", "Stark", 13, 46.3, "F", Array(5.6), getTimestamp(window3)),
+    Person("Jon Snow", "Stark", 17, 11.4, "M", Array(12.4), getTimestamp(window1),
+    ...
+).toDF()
+```
+<br/>
+
+Create a data pipe that will perform specified stastical methods on set columns of dataframe within the window size.
+```scala
+val categoricalPipe = PipelineBuilder()
+    .onColumns(Seq("surname", "gender"))
+    .setWindowing(Window.fixed("1 hour"))
+    .setWindowReferencing(windowRef)
+    .buildCategoricalModel(
+    Functions.Categorical.avgRef,
+    Functions.Categorical.entropy,
+    Functions.statResultThreshold(3.0))
+```
+
+Combine multiple pipelines
+```scala
+val workload = AnomalyWorkload.builder()
+    .addAllPipelines(categoricalPipe)
+    .addPartitioner("surname")
+    .buildWithWatermark("timestamp", "2 hours")
+```
+
+Dataset extended api
+```scala
+df.detectAnomalies(workload).map(_.toString).foreach(println(_))
+```
+
+<br/>
+Full demo application code can be viewed in our YuritaSampleApp project.
+
 ## Contributing to Yurita
 
 Thank you very much for contributing to Yurita. Please read the [contribution guidelines](CONTRIBUTING.md) for the process.
