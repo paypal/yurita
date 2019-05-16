@@ -99,6 +99,7 @@ tasks.rat {
      excludes.add("**/CONTRIBUTING.md")
      excludes.add("**/CODE_OF_CONDUCT.md")
      excludes.add("**/gradle/**")
+     excludes.add("**/YuritaSampleApp/**")
 }
 license {
     header rootProject.file('codequality/HEADER')
