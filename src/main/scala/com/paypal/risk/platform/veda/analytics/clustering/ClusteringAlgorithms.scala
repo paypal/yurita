@@ -63,4 +63,12 @@ object ClusteringAlgorithms {
     Clust4jHDBSCAN.cluster(latestWindowPoints.asJava, refPoints.map(_.asJava).asJava,
       minCorePoints, minClusterSizeForExtraction)
   }
+
+  def DBSCANFunction(eps: Double, minNeighbors: Int):
+    Function2[Seq[Array[Double]], Seq[Seq[Array[Double]]], Clustering] =
+    DBSCAN(eps, minNeighbors)
+
+  def HDBSCANFunction(minCorePoints: Int, minNeighbors: Int):
+    Function2[Seq[Array[Double]], Seq[Seq[Array[Double]]], Clustering] =
+    HDBSCAN(minCorePoints, minNeighbors)
 }
