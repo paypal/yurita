@@ -26,10 +26,12 @@ import com.paypal.risk.platform.veda.analytics.anomaly.windowref.WindowRefStrate
  * @param windowRefStrategy defines which windows a the detection model will use as reference
  * @param aggrFactory  used for creating new data windows
  * @param anomalyModel   model for deciding when data in a window is considered an anomaly
+ * @param id             The ID of the pipeline
  */
 case class AnomalyPipeline(colKey: String,
   windowStrategy: WindowStrategy,
   windowRefStrategy: WindowRefStrategy,
   aggrFactory: DataAggregationFactory,
-  anomalyModel: DetectionModel) {
+  anomalyModel: DetectionModel,
+  id: String = UUID.randomUUID().toString) {
 }

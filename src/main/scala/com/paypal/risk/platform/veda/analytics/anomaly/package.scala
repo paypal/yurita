@@ -38,7 +38,7 @@ package object anomaly {
 
   implicit val erow: Encoder[Row] = Encoders.kryo[Row]
 
-  type PipelineKey = Int
+  type PipelineKey = String
   type ShardKey = Int
   type AggregationKey = String
   type ColumnKey = String

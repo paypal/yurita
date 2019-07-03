@@ -54,19 +54,19 @@ case class AnomalyWorkload(pipelines: Seq[AnomalyPipeline], tsField: String, wat
    * we decompose the pipelines for efficient processing
    */
   private val pipeKeyToColumn =
-    pipelines.map(p => (p.hashCode, p.colKey)).toMap
+    pipelines.map(p => (p.id, p.colKey)).toMap
 
   private val pipeKeyToDataModelFactory =
-    pipelines.map(p => (p.hashCode, p.aggrFactory)).toMap
+    pipelines.map(p => (p.id, p.aggrFactory)).toMap
 
   private val pipeKeyToAnomalyModel =
-    pipelines.map(p => (p.hashCode, p.anomalyModel)).toMap
+    pipelines.map(p => (p.id, p.anomalyModel)).toMap
 
   private val pipeKeyToWindowStrategy =
-    pipelines.map(p => (p.hashCode, p.windowStrategy)).toMap
+    pipelines.map(p => (p.id, p.windowStrategy)).toMap
 
   private val pipeKeyToWindowRefStrategy =
-    pipelines.map(p => (p.hashCode, p.windowRefStrategy)).toMap
+    pipelines.map(p => (p.id, p.windowRefStrategy)).toMap
 
   private val colNameToPartitioner = partitioners.map(p => p.colName -> p).toMap
 
@@ -90,7 +90,7 @@ case class AnomalyWorkload(pipelines: Seq[AnomalyPipeline], tsField: String, wat
    */
   private def splitToTrackedMetricsDataset(df: DataFrame): Dataset[InternalTrackedMetric] = {
 
-    val pipeKeys = pipelines.map(_.hashCode)
+    val pipeKeys = pipelines.map(_.id)
 
     df.withWatermark(tsField, watermark)
       .flatMap { row =>
@@ -128,7 +128,7 @@ case class AnomalyWorkload(pipelines: Seq[AnomalyPipeline], tsField: String, wat
   /** decompose group key to its components */
   private def decomposeAggregationKey(key: AggregationKey): (PipelineKey, ShardKey, WindowKey) = {
     val splits = key.split(KEY_SEPARATOR)
-    (splits(0).toInt, splits(1).toInt, splits(2))
+    (splits(0), splits(1).toInt, splits(2))
   }
 
   private def extractRefTimeout(pipeKey: PipelineKey, aggKey: AggregationKey): Long = {
