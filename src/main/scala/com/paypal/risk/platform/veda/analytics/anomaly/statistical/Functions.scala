@@ -50,6 +50,9 @@ object Functions {
   def statResultThreshold(threshold: Double)(value: StatisticalResult[_]): Boolean =
     value.result > threshold
 
+  def statResultThresholdFunction[T](threshold: Double): Function1[StatisticalResult[T], Boolean] =
+    Functions.statResultThreshold(threshold)
+
   object Categorical {
 
     /**
@@ -101,6 +104,11 @@ object Functions {
       }
     }
 
+    def avgRefFunction[T](): Function1[Seq[Map[T, Long]], Map[T, Long]] =
+      avgRef
+
+    def entropyFunction[T](): Function2[Map[T, Long], Map[T, Long], StatisticalResult[T]] =
+      entropy
   }
 
   object Numerical {
@@ -158,6 +166,16 @@ object Functions {
         case _ => 0.0
       }
     }
+
+    def meanFunction[T]()(implicit numType: Numeric[T]): Function1[Iterable[T], Double] =
+      mean
+
+    def stdevFunction[T]()(implicit numType: Numeric[T]): Function2[Iterable[T], Double, Double] =
+      stdev
+
+    def avgMeanAndStdevRefFunction[T](): Function1[Seq[StatisticsContainer[T]], Option[(Mean, Stddev)]] =
+      avgMeanAndStdevRef
+
   }
 
   object Clustering {
@@ -199,5 +217,21 @@ object Functions {
       Clust4jHDBSCAN.returnOutliers(candidatePoints.asJava, refPoints.map(_.asJava).asJava,
         minCorePoints, minClusterSizeForExtraction).asScala
     }
+
+    def DBSCANFunction(): Function2[Double, Int,
+      Function2[Seq[Array[Double]], Seq[Seq[Array[Double]]], Seq[Array[Double]]]] =
+      DBSCAN
+
+    def DBSCANFunction(eps: Double, minNeighbors: Int): Function2[Seq[Array[Double]],
+      Seq[Seq[Array[Double]]], Seq[Array[Double]]] =
+      DBSCAN(eps, minNeighbors)
+
+    def HDBSCANFunction(): Function2[Int, Int,
+      Function2[Seq[Array[Double]], Seq[Seq[Array[Double]]], Seq[Array[Double]]]] =
+      HDBSCAN
+
+    def HDBSCANFunction(minCorePoints: Int, minNeighbors: Int): Function2[Seq[Array[Double]],
+      Seq[Seq[Array[Double]]], Seq[Array[Double]]] =
+      HDBSCAN(minCorePoints, minNeighbors)
   }
 }

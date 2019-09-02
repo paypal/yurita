@@ -95,6 +95,8 @@ test.dependsOn scalaTest
 
 tasks.rat {
      excludes.add("**/build/**")
+     excludes.add("**/.idea/**")
+     excludes.add("**/*.iml")
      excludes.add("**/LICENSE.md")
      excludes.add("**/CONTRIBUTING.md")
      excludes.add("**/CODE_OF_CONDUCT.md")
