@@ -15,6 +15,8 @@
  */
 package com.paypal.risk.platform.veda.analytics.anomaly
 
+import java.util.UUID
+
 import com.paypal.risk.platform.veda.analytics.anomaly.window.WindowStrategy
 import com.paypal.risk.platform.veda.analytics.anomaly.windowref.WindowRefStrategy
 
